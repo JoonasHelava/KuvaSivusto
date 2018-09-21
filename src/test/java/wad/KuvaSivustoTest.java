@@ -46,4 +46,12 @@ public class KuvaSivustoTest {
         mockMvc.perform(get(API_URI_SELAA))
                 .andExpect(redirectedUrl(API_URI_SINGLE_SELAA));
     }
+    @Test
+    public void canPostPicture() throws Exception {
+        // "aarrggghh" likely wont render -- we don't care :)
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "kuha.png", "image/png", "kuva".getBytes());
+
+        mockMvc.perform(multipart(API_URI_SELAA).file(multipartFile))
+                .andExpect(redirectedUrl(API_URI_SELAA));
+    }
 }

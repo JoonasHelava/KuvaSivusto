@@ -10,9 +10,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -45,5 +47,13 @@ public class KuvaSivustoTest {
     public void redirectedFromPictures() throws Exception {
         mockMvc.perform(get(API_URI_SELAA))
                 .andExpect(redirectedUrl(API_URI_SINGLE_SELAA));
+    }
+    @Test
+    public void canPostPicture() throws Exception {
+        // "aarrggghh" likely wont render -- we don't care :)
+        MockMultipartFile multipartFile = new MockMultipartFile("file", "kuha.png", "image/png", "kuva".getBytes());
+
+        mockMvc.perform(multipart(API_URI_SELAA).file(multipartFile))
+                .andExpect(redirectedUrl(API_URI_SELAA));
     }
 }

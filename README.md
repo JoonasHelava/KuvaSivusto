@@ -1,2 +1,0 @@
-# KuvaSivusto
-Web-palvelinohjelmointi harjoitustyö

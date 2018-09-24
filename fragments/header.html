@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head lang="en">
+        <meta charset="UTF-8" />
+        <title>KuvaSivusto</title>
+    </head>
+    <body>
+        <header th:fragment="header">
+            <ul>
+                <li><a th:href="@{/}">Etusivu</a></li>
+                <li>Kirjaudu sisään / oma sivu</li>
+                <li><a th:href="@{/pictures}">Selaa kuvia</a></li>
+                <li><a th:href="@{/addpicture}">Lisää kuva</a></li>
+            </ul>
+        </header>
+  </body>
+  <!--          <p>Kirjaudu sisään / oma sivu / <a th:href="@{/pictures}">Selaa kuvia</a> / <a th:href="@{/addpicture}">Lisää kuva</a></p>-->
+        
+</html>

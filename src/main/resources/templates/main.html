@@ -15,7 +15,13 @@ and open the template in the editor.
             <p>links</p>
         </header>
         
-        <div><p>Stats</p></div>
-        <div><h2>TOP 6</h2></div>
+        <div><h3>Stats</h3></div>
+        <div><p>Kuvasi / Kommenttisi </p></div>
+        <div><h2>TOP 3</h2></div>
+        <div>
+            <ul th:each="picture : ${pictures}" style="list-style-type:none">
+                <li><img width="300" th:src="@{/pictures/{id}/content(id=${picture.id})}"/></li>
+            </ul>
+        </div>
     </body>
 </html>

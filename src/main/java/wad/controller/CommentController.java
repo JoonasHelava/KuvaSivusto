@@ -36,6 +36,7 @@ public class CommentController {
         List<Comment> comments = this.fileObjectRepository.getOne(id).getComments();
         comments.add(comment);
         this.fileObjectRepository.getOne(id).setComments(comments);
+        this.fileObjectRepository.getOne(id).score();
         return "redirect:/pictures";
     }
 }

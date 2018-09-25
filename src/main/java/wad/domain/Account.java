@@ -6,7 +6,6 @@
 package wad.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +19,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 @Data
 @Entity
-public class Comment extends AbstractPersistable<Long>{
-
-    private String title;
-    private String content;
-    private String user;
-    private Long ob;
+public class Account extends AbstractPersistable<Long>{
+    private String username;
+    private String password;
     
 }

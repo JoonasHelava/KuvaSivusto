@@ -30,7 +30,7 @@ public class FileObject extends AbstractPersistable<Long> {
     
     private int upvote;
     private int downvote;
-    
+    private int score;
     @OneToMany
     private List<Comment> comments;
     
@@ -39,5 +39,9 @@ public class FileObject extends AbstractPersistable<Long> {
     }
     public void downVo(){
         this.downvote++;
+    }
+    public void score(){
+        int com = this.comments.size();
+        score = upvote + downvote + (com * 2);
     }
 }

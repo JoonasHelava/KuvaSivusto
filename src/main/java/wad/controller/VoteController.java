@@ -29,6 +29,7 @@ public class VoteController {
     @GetMapping("/voteplus/{id}")
     public String upvote(@PathVariable Long id,Model model){
         this.fileObjectRepository.getOne(id).upVo();
+        this.fileObjectRepository.getOne(id).score();
         return "redirect:/pictures";
     }
     
@@ -36,6 +37,7 @@ public class VoteController {
     @GetMapping("/voteminus/{id}")
     public String downvote(@PathVariable Long id,Model model){
         this.fileObjectRepository.getOne(id).downVo();
+        this.fileObjectRepository.getOne(id).score();
         return "redirect:/pictures";
     }
 }

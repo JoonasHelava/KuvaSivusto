@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package wad;
 
@@ -17,6 +12,8 @@ import org.springframework.context.annotation.Profile;
  *
  * @author Joonas
  */
+
+//Configuration for production profile to crate DB
 @Configuration
 @Profile("production")
 public class ProductionProfile {

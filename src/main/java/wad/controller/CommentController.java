@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package wad.controller;
 
 import java.util.List;
@@ -19,13 +15,14 @@ import wad.repository.FileObjectRepository;
  *
  * @author Joonas
  */
+//Controller for posting commment
 @Controller
 public class CommentController {
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private FileObjectRepository fileObjectRepository;
-    
+    //Creating comment and connecting it to FileObject
     @PostMapping("/comments/{id}")
     public String comment(@RequestParam String title, @RequestParam String content,@PathVariable Long id){
         Comment comment = new Comment();

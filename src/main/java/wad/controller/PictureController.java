@@ -49,22 +49,23 @@ public class PictureController {
     //directs you to picture
     @GetMapping("/pictures/{id}")
     public String get(@PathVariable Long id,Model model) {
+        Long imageCount = this.fileObjectRepository.count();
         Map<String, Object> map = new HashMap<>();
         map.put("count",this.fileObjectRepository.findAll().size());
         //For browsing setting ids of next and previous picture
-        if(this.fileObjectRepository.findById(id+1).isPresent()){
-            map.put("next",this.fileObjectRepository.getOne(id+1).getId());
+        if (id < imageCount && id > 0L) {
+            map.put("next",id + 1);
         }
-        if(this.fileObjectRepository.findById(id-1).isPresent()){
-            map.put("previous",this.fileObjectRepository.getOne(id-1).getId());
+        if (id > 1L) {
+            map.put("previous",id - 1);
         }
         //To see the picture id is set to current
-        if(this.fileObjectRepository.findById(id).isPresent()){
-            map.put("current",this.fileObjectRepository.getOne(id).getId());
+        if (id >= 1L && id <= imageCount) {
+            map.put("current",id);
             //Information about pictures votes and comments
             map.put("upvotes",this.fileObjectRepository.getOne(id).getUpvote());
             map.put("downvotes",this.fileObjectRepository.getOne(id).getDownvote());
-            map.put("comments",this.commentRepository.findByOb(this.fileObjectRepository.getOne(id).getId()));
+            map.put("comments",this.commentRepository.findByOb(id));
         }
         
         model.addAllAttributes(map);
@@ -83,10 +84,7 @@ public class PictureController {
     public String save(@RequestParam("file") MultipartFile file) throws IOException {
     FileObject fo = new FileObject();
     fo.setContent(file.getBytes());
-    System.out.println(file.getContentType());
-    if(file.getContentType().matches("image/png")){
-        fileObjectRepository.save(fo);
-    }
+    this.fileObjectRepository.save(fo);
     return "redirect:/pictures";
     
 }

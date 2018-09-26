@@ -21,9 +21,9 @@ public class DefaultController {
         model.addAttribute("pictures", this.fileObjectRepository.findAll(pageable));
         return "main";
     }
-    @GetMapping("/login")
-    public String login(){
-        return"login";
-    }
+//    @GetMapping("/login")
+//    public String login(){
+//        return"login";
+//    }
     
 }

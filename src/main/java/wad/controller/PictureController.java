@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package wad.controller;
 
-/**
- *
- * @author Joonas
- */
+package wad.controller;
 
 import wad.repository.FileObjectRepository;
 import wad.domain.FileObject;
@@ -32,34 +23,45 @@ import wad.repository.CommentRepository;
  *
  * @author Joonas
  */
+
+//"Picture" controller for routes GET( /pictures , /addpicture, /pictures/{id}, /pictures/{id}/content ) POST ( /pictures )
 @Controller
 public class PictureController {
     
+    //Needed to get all info in FileObject
     @Autowired
     private FileObjectRepository fileObjectRepository;
+    //In future all info is divided to their own classes
     @Autowired
     private CommentRepository commentRepository;
     
+    //directs you to first picture
     @GetMapping("/pictures")
     public String redirect(){
         return "redirect:/pictures/1";
     }
+    //directs you to page where you can add picture
     @GetMapping("/addpicture")
     public String addpic(){
         return "addpicture";
     }
+    
+    //directs you to picture
     @GetMapping("/pictures/{id}")
     public String get(@PathVariable Long id,Model model) {
         Map<String, Object> map = new HashMap<>();
         map.put("count",this.fileObjectRepository.findAll().size());
+        //For browsing setting ids of next and previous picture
         if(this.fileObjectRepository.findById(id+1).isPresent()){
             map.put("next",this.fileObjectRepository.getOne(id+1).getId());
         }
         if(this.fileObjectRepository.findById(id-1).isPresent()){
             map.put("previous",this.fileObjectRepository.getOne(id-1).getId());
         }
+        //To see the picture id is set to current
         if(this.fileObjectRepository.findById(id).isPresent()){
             map.put("current",this.fileObjectRepository.getOne(id).getId());
+            //Information about pictures votes and comments
             map.put("upvotes",this.fileObjectRepository.getOne(id).getUpvote());
             map.put("downvotes",this.fileObjectRepository.getOne(id).getDownvote());
             map.put("comments",this.commentRepository.findByOb(this.fileObjectRepository.getOne(id).getId()));
@@ -70,11 +72,13 @@ public class PictureController {
         return "pictures";
         
     }
+    //This gives you the picture
     @GetMapping(path = "/pictures/{id}/content", produces = "image/png")
     @ResponseBody
     public byte[] get(@PathVariable Long id) {
         return fileObjectRepository.getOne(id).getContent();
     }
+    //Saving the picture that is added
     @PostMapping("/pictures")
     public String save(@RequestParam("file") MultipartFile file) throws IOException {
     FileObject fo = new FileObject();

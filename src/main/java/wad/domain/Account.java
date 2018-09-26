@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package wad.domain;
 
 import javax.persistence.Entity;
@@ -15,11 +11,13 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  *
  * @author Joonas
  */
+//Account entity NOT_IN_USE
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
 public class Account extends AbstractPersistable<Long>{
+    //Contains username and password
     private String username;
     private String password;
     

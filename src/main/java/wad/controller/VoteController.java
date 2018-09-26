@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package wad.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +15,15 @@ import wad.repository.FileObjectRepository;
  *
  * @author Joonas
  */
+//Vote controller for routes /voteplus/{id} and /voteminus/{id}
 @Controller
 public class VoteController {
     
+    //FileObject contains the information about votes
     @Autowired
     private FileObjectRepository fileObjectRepository;
     
+    //Using method upVo / downVo to give upvote /downvote and then valueting new score for FileObject
     @Transactional
     @GetMapping("/voteplus/{id}")
     public String upvote(@PathVariable Long id,Model model){

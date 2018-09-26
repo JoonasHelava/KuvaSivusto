@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
     <head lang="en">
         <meta charset="UTF-8" />
         <title>KuvaSivusto</title>
+        <!-- Bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" 
+              rel="stylesheet" 
+              integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" 
+              crossorigin="anonymous"/>
     </head>
     <body>
         <header th:fragment="header">
-            <ul>
-                <li><a th:href="@{/}">Etusivu</a></li>
-                <li>Kirjaudu sisään / oma sivu</li>
-                <li><a th:href="@{/pictures}">Selaa kuvia</a></li>
-                <li><a th:href="@{/addpicture}">Lisää kuva</a></li>
-            </ul>
+            <div class="navbar">
+                <div class="navbar-inner">
+                <ul class="nav">
+                    <li><a th:href="@{/}">Etusivu</a></li>
+                    <li><p>  |  </p></li>
+                    <li>Kirjaudu sisään / oma sivu</li>
+                    <li><p>  |  </p></li>
+                    <li><a th:href="@{/pictures}">Selaa kuvia</a></li>
+                    <li><p>  |  </p></li>
+                    <li><a th:href="@{/addpicture}">Lisää kuva</a></li>
+                </ul>
+                </div>
+            </div>
         </header>
-  </body>
-  <!--          <p>Kirjaudu sisään / oma sivu / <a th:href="@{/pictures}">Selaa kuvia</a> / <a th:href="@{/addpicture}">Lisää kuva</a></p>-->
-        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+                crossorigin="anonymous">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" 
+                integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" 
+                crossorigin="anonymous">
+        </script> 
+  </body>      
 </html>

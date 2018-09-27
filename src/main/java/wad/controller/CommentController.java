@@ -2,6 +2,7 @@
 package wad.controller;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ public class CommentController {
     @Autowired
     private FileObjectRepository fileObjectRepository;
     //Creating comment and connecting it to FileObject
-
+    @Transactional
     @PostMapping("/comments/{id}")
     public String comment(@RequestParam String title, @RequestParam String content,@PathVariable Long id){
         Comment comment = new Comment(title,content,this.fileObjectRepository.getOne(id).getId());

@@ -2,6 +2,7 @@
 package wad.controller;
 
 import wad.repository.FileObjectRepository;
+import javax.transaction.Transactional;
 import wad.domain.FileObject;
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ public class PictureController {
     }
     
     //directs you to picture
+    @Transactional
     @GetMapping("/pictures/{id}")
     public String get(@PathVariable Long id,Model model) {
         Long imageCount = this.fileObjectRepository.count();
@@ -74,12 +76,14 @@ public class PictureController {
         
     }
     //This gives you the picture
+    @Transactional
     @GetMapping(path = "/pictures/{id}/content", produces = "image/png")
     @ResponseBody
     public byte[] get(@PathVariable Long id) {
         return fileObjectRepository.getOne(id).getContent();
     }
     //Saving the picture that is added
+    @Transactional
     @PostMapping("/pictures")
     public String save(@RequestParam("file") MultipartFile file) throws IOException {
     FileObject fo = new FileObject();

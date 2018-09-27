@@ -1,5 +1,6 @@
 package wad.controller;
 
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ public class DefaultController {
     private FileObjectRepository fileObjectRepository;
     
     //Sets TOP3 in main page
+    @Transactional
     @GetMapping("/")
     public String redirect(Model model) {
         Pageable pageable = PageRequest.of(0, 3, Sort.Direction.ASC, "score");

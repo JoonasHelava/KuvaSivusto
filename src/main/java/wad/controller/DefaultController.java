@@ -20,7 +20,7 @@ public class DefaultController {
     @Transactional
     @GetMapping("/")
     public String redirect(Model model) {
-        Pageable pageable = PageRequest.of(0, 3, Sort.Direction.ASC, "score");
+        Pageable pageable = PageRequest.of(0, 3, Sort.Direction.DESC, "score");
         model.addAttribute("pictures", this.fileObjectRepository.findAll(pageable));
         return "main";
     }
